@@ -16,15 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Determine wait time based on selected app.
+        id: determine-wait-time
         run: |
           case "${{ inputs.environment }}" in
-            "dev") WAIT_TIME=30 ;;
-            "staging") WAIT_TIME=60 ;;
-            "prod") WAIT_TIME=90 ;;
-            *) WAIT_TIME=0 ;;
+            "dev") echo "WAIT_TIME=30" >> $GITHUB_ENV ;;
+            "staging") echo "WAIT_TIME=60" >> $GITHUB_ENV ;;
+            "prod") echo "WAIT_TIME=90" >> $GITHUB_ENV ;;
+            *) echo "WAIT_TIME=0" >> $GITHUB_ENV ;;
           esac
-  
+
       - name: Run tests
         run: |
-          echo "Wait time: ${{WAIT_TIME}}"
+          echo "Wait time: ${{ steps.determine-wait-time.outputs.WAIT_TIME }}"
           echo "Tests completed"
