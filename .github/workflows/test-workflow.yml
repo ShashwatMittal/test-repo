@@ -26,6 +26,8 @@ jobs:
           esac
 
       - name: Run tests
+        env:
+          WAIT_TIME: ${{ steps.determine-wait-time.outputs.WAIT_TIME }}
         run: |
-          echo "Wait time: ${{ steps.determine-wait-time.outputs.WAIT_TIME }}"
+          echo "Wait time: $WAIT_TIME"
           echo "Tests completed"
