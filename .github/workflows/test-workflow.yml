@@ -23,8 +23,8 @@ jobs:
             "prod") WAIT_TIME=90 ;;
             *) WAIT_TIME=0 ;;
           esac
-
+  
       - name: Run tests
         run: |
-          echo "Wait time: $WAIT_TIME"
+          echo "Wait time: ${{WAIT_TIME}}"
           echo "Tests completed"
