@@ -1,0 +1,30 @@
+name: Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+        default: dev
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine wait time based on selected app.
+        run: |
+          case "${{ inputs.environment }}" in
+            "dev") WAIT_TIME=30 ;;
+            "staging") WAIT_TIME=60 ;;
+            "prod") WAIT_TIME=90 ;;
+            *) WAIT_TIME=0 ;;
+          esac
+
+      - name: Run tests
+        run: |
+          echo "Wait time: $WAIT_TIME"
+          echo "Tests completed"
