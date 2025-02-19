@@ -16,7 +16,7 @@ on:
 
 jobs:
   test-job:
-    if: ${{ github.event.inputs.trigger }}
+    if: ${{ true == github.event.inputs.trigger }}
     runs-on: ubuntu-latest
     steps:
       - name: Determine wait time based on selected app.
