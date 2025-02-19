@@ -10,9 +10,14 @@ on:
           - staging
           - prod
         default: dev
+      trigger:
+        type: boolean
+        default: true
+        required: true
 
 jobs:
   test-job:
+    if: ${{ github.event.inputs.trigger }}
     runs-on: ubuntu-latest
     steps:
       - name: Determine wait time based on selected app.
