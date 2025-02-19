@@ -12,7 +12,6 @@ on:
         default: dev
       trigger:
         type: boolean
-        default: true
         required: true
 
 jobs:
@@ -33,3 +32,8 @@ jobs:
         run: |
           echo "Wait time: ${{ env.WAIT_TIME }}"
           echo "Tests completed"
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo input values.
+        run: echo "${{github.event.inputs}}"
