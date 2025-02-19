@@ -36,4 +36,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo input values.
-        run: echo "${{github.event.inputs}}"
+        run: echo "${{github.event.inputs.trigger}}"
