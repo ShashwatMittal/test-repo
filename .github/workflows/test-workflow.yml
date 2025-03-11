@@ -30,8 +30,9 @@ jobs:
 
       - name: Run tests
         run: |
-          echo "Wait time: ${{ env.WAIT_TIME }}"
+          echo "Wait time: $WAIT_TIME"
           echo "Tests completed"
+          sleep $WAIT_TIME
   second-job:
     runs-on: ubuntu-latest
     steps:
